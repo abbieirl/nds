@@ -1,0 +1,18 @@
+[package]
+name = "nds_core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nds_sys = { path = "../nds_sys" }
+nds_proc = { path = "../nds_proc", optional = true }
+portable-atomic = { version = "1.11.1", features = [
+    "require-cas",
+    "unsafe-assume-single-core",
+] }
+
+[features]
+default = ["alloc", "panic", "proc"]
+alloc = []
+panic = []
+proc = ["dep:nds_proc"]

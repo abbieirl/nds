@@ -1,0 +1,8 @@
+[package]
+name = "nds_sys"
+version = "0.1.0"
+edition = "2024"
+
+[build-dependencies]
+anyhow = "1.0.98"
+bindgen = "0.72.0"

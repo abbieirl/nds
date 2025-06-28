@@ -1,0 +1,12 @@
+[package]
+name = "nds_std"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nds_core = { path = "../nds_core" }
+nds_sys = { path = "../nds_sys" }
+portable-atomic = { version = "1.11.1", features = [
+    "require-cas",
+    "unsafe-assume-single-core",
+] }

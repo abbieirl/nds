@@ -1,0 +1,15 @@
+[package]
+name = "nds"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nds_core = { path = "../nds_core" }
+nds_std = { path = "../nds_std", optional = true }
+
+[dev-dependencies]
+anyhow = { version = "1.0.98", default-features = false }
+
+[features]
+default = ["std"]
+std = ["dep:nds_std"]

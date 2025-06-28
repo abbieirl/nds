@@ -1,0 +1,9 @@
+[workspace]
+resolver = "3"
+members = ["nds", "nds_core", "nds_proc", "nds_std", "nds_sys"]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
