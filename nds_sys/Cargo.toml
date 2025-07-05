@@ -6,3 +6,6 @@ edition = "2024"
 [build-dependencies]
 anyhow = "1.0.98"
 bindgen = "0.72.0"
+
+[dev-dependencies]
+bindgen_helpers = "0.5.0"

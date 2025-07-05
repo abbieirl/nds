@@ -27,7 +27,6 @@ fn main() -> Result<()> {
         .merge_extern_blocks(true)
         .sort_semantically(true)
         .derive_default(true)
-        .rustified_enum("ConsoleColor")
         .bitfield_enum("KEYPAD_BITS")
         .clang_arg(format!(
             "-isystem{wonderful}/toolchain/gcc-arm-none-eabi/arm-none-eabi/include"

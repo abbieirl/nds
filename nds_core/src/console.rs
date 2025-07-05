@@ -4,10 +4,7 @@ use crate::background::{Size, Type};
 use alloc::ffi::CString;
 use core::fmt::{Error, Result, Write};
 use core::mem::zeroed;
-use nds_sys::{ConsoleColor, PrintConsole};
-
-/// Colors of the default palettes of libnds.
-pub type Color = ConsoleColor;
+use nds_sys::PrintConsole;
 
 /// Console structure used to store the state of a console render context.
 #[repr(transparent)]
@@ -51,7 +48,7 @@ impl Console {
     /// Sets the color to use to print new text.
     #[inline]
     pub fn set_color(&mut self, color: Color) {
-        unsafe { nds_sys::consoleSetColor(self.0, color) };
+        unsafe { nds_sys::consoleSetColor(self.0, color as u32) };
     }
 
     /// Clears the console and returns the cursor to the top left corner.
@@ -71,4 +68,25 @@ impl Write for Console {
 
         Ok(())
     }
+}
+
+/// Colors of the default palettes of libnds.
+#[repr(u32)]
+#[derive(Debug, Default)]
+pub enum Color {
+    Black = nds_sys::ConsoleColor_CONSOLE_BLACK,
+    Red = nds_sys::ConsoleColor_CONSOLE_RED,
+    Green = nds_sys::ConsoleColor_CONSOLE_GREEN,
+    Yellow = nds_sys::ConsoleColor_CONSOLE_YELLOW,
+    Blue = nds_sys::ConsoleColor_CONSOLE_BLUE,
+    Magenta = nds_sys::ConsoleColor_CONSOLE_MAGENTA,
+    Cyan = nds_sys::ConsoleColor_CONSOLE_CYAN,
+    RedLight = nds_sys::ConsoleColor_CONSOLE_LIGHT_RED,
+    GreenLight = nds_sys::ConsoleColor_CONSOLE_LIGHT_GREEN,
+    YellowLight = nds_sys::ConsoleColor_CONSOLE_LIGHT_YELLOW,
+    BlueLight = nds_sys::ConsoleColor_CONSOLE_LIGHT_BLUE,
+    MagentaLight = nds_sys::ConsoleColor_CONSOLE_LIGHT_MAGENTA,
+    CyanLight = nds_sys::ConsoleColor_CONSOLE_LIGHT_CYAN,
+    #[default]
+    White = nds_sys::ConsoleColor_CONSOLE_WHITE,
 }
