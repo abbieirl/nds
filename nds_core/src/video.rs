@@ -31,3 +31,20 @@ impl Bank {
     pub const H: Self = Self(0x0400_0248 as *mut u8);
     pub const I: Self = Self(0x0400_0249 as *mut u8);
 }
+
+#[repr(i32)]
+pub enum Screen {
+    Main = 1,
+    Sub = 2,
+    Both = 3,
+}
+
+// Sets the screens brightness.
+#[inline]
+pub fn set_brightness(screen: Screen, level: i32) {
+    assert!(
+        (-16..=16).contains(&level),
+        "Brightness level must be between -16 and 16"
+    );
+    unsafe { nds_sys::setBrightness(screen as i32, level) };
+}

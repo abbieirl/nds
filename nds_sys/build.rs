@@ -26,6 +26,7 @@ fn main() -> Result<()> {
         .rust_target(RustTarget::nightly())
         .merge_extern_blocks(true)
         .sort_semantically(true)
+        .wrap_static_fns(true)
         .derive_default(true)
         .bitfield_enum("KEYPAD_BITS")
         .clang_arg(format!(

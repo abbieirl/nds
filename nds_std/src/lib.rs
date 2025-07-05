@@ -9,5 +9,6 @@
 
 extern crate alloc;
 
+pub mod ops;
 pub mod sync;
 pub mod thread;
