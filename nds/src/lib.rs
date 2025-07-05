@@ -10,3 +10,5 @@ pub mod sys {
 pub mod std {
     pub use nds_std::*;
 }
+
+pub use sys::{dtcm, entry, itcm};

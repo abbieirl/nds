@@ -1,9 +1,10 @@
 //! Traits, helpers, and type definitions for core I/O functionality.
 
+use crate::background::{Size, Type};
 use alloc::ffi::CString;
 use core::fmt::{Error, Result, Write};
 use core::mem::zeroed;
-use nds_sys::{BgSize, BgType, ConsoleColor, PrintConsole};
+use nds_sys::{ConsoleColor, PrintConsole};
 
 /// Colors of the default palettes of libnds.
 pub type Color = ConsoleColor;
@@ -15,13 +16,19 @@ pub struct Console(*mut PrintConsole);
 impl Console {
     /// Initialize a new console on the top screen.
     #[inline]
-    pub fn top(layer: i32, kind: BgType, size: BgSize) -> Self {
+    pub fn top(layer: i32, kind: Type, size: Size) -> Self {
+        let kind = kind as u32;
+        let size = size as u32;
+
         Self(unsafe { nds_sys::consoleInit(zeroed(), layer, kind, size, 31, 0, true, true) })
     }
 
     /// Initialize a new console on the bottom screen.
     #[inline]
-    pub fn bottom(layer: i32, kind: BgType, size: BgSize) -> Self {
+    pub fn bottom(layer: i32, kind: Type, size: Size) -> Self {
+        let kind = kind as u32;
+        let size = size as u32;
+
         Self(unsafe { nds_sys::consoleInit(zeroed(), layer, kind, size, 31, 0, false, true) })
     }
 

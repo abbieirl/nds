@@ -3,8 +3,8 @@
 
 use anyhow::Result;
 use core::fmt::Write;
-use nds::input::Keys;
-use nds::io::Console;
+use nds::sys::console::Console;
+use nds::sys::input::Keys;
 
 #[nds::entry]
 fn main() -> Result<()> {
@@ -28,7 +28,7 @@ fn main() -> Result<()> {
     writeln!(console, "\x1b[23;0HPress START to exit to loader")?;
 
     loop {
-        nds::interrupt::swi_wait_for_vblank();
+        nds::sys::interrupt::swi_wait_for_vblank();
         Keys::scan();
 
         if Keys::down().contains(Keys::START) {

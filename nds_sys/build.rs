@@ -28,8 +28,6 @@ fn main() -> Result<()> {
         .sort_semantically(true)
         .derive_default(true)
         .rustified_enum("ConsoleColor")
-        .rustified_enum("BgType")
-        .rustified_enum("BgSize")
         .bitfield_enum("KEYPAD_BITS")
         .clang_arg(format!(
             "-isystem{wonderful}/toolchain/gcc-arm-none-eabi/arm-none-eabi/include"

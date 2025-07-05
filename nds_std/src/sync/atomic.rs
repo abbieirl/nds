@@ -20,6 +20,7 @@ impl<T: Primitive> Atomic<T> {
         }
     }
 
+    /// Creates a new `Atomic` from a pointer.
     #[inline]
     pub const unsafe fn from_ptr<'a>(ptr: *mut T) -> &'a Self {
         unsafe { &*ptr.cast() }
@@ -32,7 +33,6 @@ impl<T: Primitive> Atomic<T> {
         unsafe { &mut *(self.v.get().cast()) }
     }
 
-    /// Creates a new `Atomic` from a pointer.
     #[inline]
     pub const fn into_inner(self) -> T {
         self.v.into_inner()

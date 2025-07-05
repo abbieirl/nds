@@ -17,7 +17,7 @@ pub fn entry(_args: TokenStream, input: TokenStream) -> TokenStream {
     quote! {
         #[unsafe(no_mangle)]
         extern "C" fn main(_argc: i32, _argv: *const *const u8) -> i32 {
-            use ::nds::process::Termination;
+            use ::nds::sys::process::Termination;
             #[inline(always)]
             #function
             #ident().status()
